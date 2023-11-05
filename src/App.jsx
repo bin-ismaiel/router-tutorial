@@ -1,0 +1,37 @@
+import "./App.css";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  // createRoutesFromElements,
+  // Route,
+} from "react-router-dom";
+import Home from "./pages/Home";
+import Products from "./pages/Products";
+import Root from "./components/Root";
+import Error from "./pages/Error";
+import Product from "./pages/Product";
+// const routeDefenitions = createRoutesFromElements(
+//   <Route>
+//     <Route path="/" element={<Home />} />
+//   </Route>
+// );
+// const router = createBrowserRouter(routeDefenitions);
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    errorElement: <Error />,
+    children: [
+      { index: true, element: <Home /> },
+      { path: "products", element: <Products /> },
+      { path: "products/:productId", element: <Product /> },
+    ],
+  },
+]);
+
+function App() {
+  return <RouterProvider router={router} />;
+}
+
+export default App;
